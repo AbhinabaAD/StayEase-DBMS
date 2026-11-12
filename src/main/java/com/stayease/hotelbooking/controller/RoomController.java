@@ -4,8 +4,12 @@ package com.stayease.hotelbooking.controller;
 import com.stayease.hotelbooking.entity.Room;
 import com.stayease.hotelbooking.service.RoomService;
 
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
+
+import jakarta.validation.Valid;
 
 import java.util.List;
 
@@ -48,7 +52,7 @@ public class RoomController {
     }
 
     @PostMapping
-    public Room createRoom(@RequestBody Room room) {
+    public Room createRoom(@Valid @RequestBody Room room) {
         return roomService.saveRoom(room);
     }
 

@@ -1,6 +1,10 @@
 
 package com.stayease.hotelbooking.entity;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.Size;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -16,6 +20,8 @@ public class Room {
     @JoinColumn(name = "BranchID", nullable = false)
     private HotelBranch branch;
 
+    @NotBlank(message = "Room number is required")
+    @Size(max = 20, message = "Room number cannot exceed 20 characters")
     @Column(name = "RoomNumber")
     private String roomNumber;
 
@@ -23,9 +29,11 @@ public class Room {
     @JoinColumn(name = "RoomTypeID", nullable = false)
     private RoomType roomType;
 
+    @PositiveOrZero(message = "Floor cannot be negative")
     @Column(name = "Floor")
     private Integer floor;
 
+    @NotBlank(message = "Room status is required")
     @Column(name = "RoomStatus")
     private String roomStatus;
 

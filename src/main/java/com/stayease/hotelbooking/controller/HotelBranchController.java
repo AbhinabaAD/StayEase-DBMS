@@ -7,6 +7,8 @@ import com.stayease.hotelbooking.service.HotelBranchService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 
+import jakarta.validation.Valid;
+
 import java.util.List;
 
 @RestController
@@ -43,7 +45,7 @@ public class HotelBranchController {
     }
 
     @PostMapping
-    public HotelBranch createBranch(@RequestBody HotelBranch branch) {
+    public HotelBranch createBranch(@Valid @RequestBody HotelBranch branch) {
         return branchService.saveBranch(branch);
     }
 

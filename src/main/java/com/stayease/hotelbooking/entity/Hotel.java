@@ -2,6 +2,8 @@
 package com.stayease.hotelbooking.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "Hotel")
@@ -12,9 +14,12 @@ public class Hotel {
     @Column(name = "HotelID")
     private Integer hotelId;
 
+    @NotBlank(message = "Hotel name is required")
+    @Size(max = 100, message = "Hotel name cannot exceed 100 characters")
     @Column(name = "HotelName")
     private String hotelName;
 
+    @Size(max = 1000, message = "Description cannot exceed 1000 characters")
     @Column(name = "Description")
     private String description;
 

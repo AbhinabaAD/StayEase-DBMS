@@ -4,6 +4,9 @@ package com.stayease.hotelbooking.entity;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "Customer")
@@ -14,12 +17,18 @@ public class Customer {
     @Column(name = "CustomerID")
     private Integer customerId;
 
+    @NotBlank(message = "Full name is required")
+    @Size(max = 100, message = "Full name cannot exceed 100 characters")
     @Column(name = "FullName")
     private String fullName;
 
-    @Column(name = "Email", unique = true)
+    @NotBlank(message = "Email is required")
+    @Email(message = "Enter a valid email address")
+    @Column(name = "Email")
     private String email;
 
+    @NotBlank(message = "Phone number is required")
+    @Size(max = 20, message = "Phone number cannot exceed 20 characters")
     @Column(name = "Phone")
     private String phone;
 

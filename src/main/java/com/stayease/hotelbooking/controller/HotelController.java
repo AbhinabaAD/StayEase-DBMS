@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/hotels")
 @CrossOrigin(origins = "*")
@@ -33,7 +35,7 @@ public class HotelController {
     }
 
     @PostMapping
-    public Hotel createHotel(@RequestBody Hotel hotel) {
+    public Hotel createHotel(@Valid @RequestBody Hotel hotel) {
         return hotelService.saveHotel(hotel);
     }
 

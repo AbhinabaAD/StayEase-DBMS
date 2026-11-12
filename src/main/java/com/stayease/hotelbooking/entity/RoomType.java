@@ -1,6 +1,10 @@
 
 package com.stayease.hotelbooking.entity;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -12,9 +16,12 @@ public class RoomType {
     @Column(name = "RoomTypeID")
     private Integer roomTypeId;
 
+    @NotBlank(message = "Room type name is required")
+    @Size(max = 50, message = "Room type name cannot exceed 50 characters")
     @Column(name = "TypeName")
     private String typeName;
 
+    @Positive(message = "Capacity must be greater than zero")
     @Column(name = "Capacity")
     private Integer capacity;
 

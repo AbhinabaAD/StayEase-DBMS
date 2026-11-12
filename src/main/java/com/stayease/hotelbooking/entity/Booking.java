@@ -5,6 +5,12 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
+
+import com.stayease.hotelbooking.validation.ValidBookingDates;
+
+@ValidBookingDates
 @Entity
 @Table(name = "Booking")
 public class Booking {
@@ -14,23 +20,29 @@ public class Booking {
     @Column(name = "BookingID")
     private Integer bookingId;
 
+    @NotNull(message = "Customer is required")
     @ManyToOne
     @JoinColumn(name = "CustomerID", nullable = false)
     private Customer customer;
 
+    @NotNull(message = "Hotel branch is required")
     @ManyToOne
     @JoinColumn(name = "BranchID", nullable = false)
     private HotelBranch branch;
 
+    @NotNull(message = "Booking date is required")
     @Column(name = "BookingDate")
     private LocalDateTime bookingDate;
 
+    @NotNull(message = "Check-in date is required")
     @Column(name = "CheckInDate")
     private LocalDate checkInDate;
 
+    @NotNull(message = "Check-out date is required")
     @Column(name = "CheckOutDate")
     private LocalDate checkOutDate;
 
+    @NotBlank(message = "Booking status is required")
     @Column(name = "BookingStatus")
     private String bookingStatus;
 

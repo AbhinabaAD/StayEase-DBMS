@@ -7,6 +7,8 @@ import com.stayease.hotelbooking.service.RoomTypeService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 
+import jakarta.validation.Valid;
+
 import java.util.List;
 
 @RestController
@@ -40,7 +42,7 @@ public class RoomTypeController {
     }
 
     @PostMapping
-    public RoomType createRoomType(@RequestBody RoomType roomType) {
+    public RoomType createRoomType(@Valid @RequestBody RoomType roomType) {
         return roomTypeService.saveRoomType(roomType);
     }
 
