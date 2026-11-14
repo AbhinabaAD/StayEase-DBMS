@@ -5,6 +5,8 @@ import com.stayease.hotelbooking.service.ReviewService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import jakarta.validation.Valid;
+
 import java.util.List;
 
 @RestController
@@ -37,7 +39,7 @@ public class ReviewController {
     }
 
     @PostMapping
-    public Review createReview(@RequestBody Review review) {
+    public Review createReview(@Valid @RequestBody Review review) {
         return reviewService.saveReview(review);
     }
 

@@ -5,6 +5,8 @@ import com.stayease.hotelbooking.entity.BookingRoom;
 import com.stayease.hotelbooking.entity.BookingRoomId;
 import com.stayease.hotelbooking.service.BookingRoomService;
 
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 
@@ -37,7 +39,7 @@ public class BookingRoomController {
     }
 
     @PostMapping
-    public BookingRoom createAllocation(@RequestBody BookingRoom allocation) {
+    public BookingRoom createAllocation(@Valid @RequestBody BookingRoom allocation) {
         return bookingRoomService.saveAllocation(allocation);
     }
 

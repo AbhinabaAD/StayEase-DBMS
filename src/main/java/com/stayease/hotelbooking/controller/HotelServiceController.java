@@ -2,6 +2,9 @@ package com.stayease.hotelbooking.controller;
 
 import com.stayease.hotelbooking.entity.HotelServiceEntity;
 import com.stayease.hotelbooking.service.HotelServiceManager;
+
+import jakarta.validation.Valid;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,7 +43,7 @@ public class HotelServiceController {
     }
 
     @PostMapping
-    public HotelServiceEntity createService(@RequestBody HotelServiceEntity service) {
+    public HotelServiceEntity createService(@Valid @RequestBody HotelServiceEntity service) {
         return hotelServiceManager.saveService(service);
     }
 

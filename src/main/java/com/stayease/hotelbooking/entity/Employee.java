@@ -1,6 +1,11 @@
 
 package com.stayease.hotelbooking.entity;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
@@ -13,22 +18,32 @@ public class Employee {
     @Column(name = "EmployeeID")
     private Integer employeeId;
 
+    @NotNull(message = "Hotel branch is required")
     @ManyToOne
     @JoinColumn(name = "BranchID", nullable = false)
     private HotelBranch branch;
 
+    @NotBlank(message = "Employee name is required")
+    @Size(max = 100, message = "Employee name cannot exceed 100 characters")
     @Column(name = "FullName")
     private String fullName;
 
+    @NotBlank(message = "Email is required")
+    @Email(message = "Enter a valid email address")
     @Column(name = "Email")
     private String email;
 
+    @NotBlank(message = "Phone number is required")
+    @Size(max = 20, message = "Phone number cannot exceed 20 characters")
     @Column(name = "Phone")
     private String phone;
 
+    @NotBlank(message = "Designation is required")
+    @Size(max = 100, message = "Designation cannot exceed 100 characters")
     @Column(name = "Designation")
     private String designation;
 
+    @NotNull(message = "Hire date is required")
     @Column(name = "HireDate")
     private LocalDate hireDate;
 

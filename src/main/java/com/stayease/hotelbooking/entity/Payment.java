@@ -5,6 +5,11 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 @Entity
 @Table(name = "Payment")
 public class Payment {
@@ -14,19 +19,27 @@ public class Payment {
     @Column(name = "PaymentID")
     private Integer paymentId;
 
+    @NotNull(message = "Booking is required")
     @ManyToOne
     @JoinColumn(name = "BookingID", nullable = false)
     private Booking booking;
 
+    @NotNull(message = "Payment date is required")
     @Column(name = "PaymentDate")
     private LocalDateTime paymentDate;
 
+    @NotNull(message = "Payment amount is required")
+    @Positive(message = "Payment amount must be greater than zero")
     @Column(name = "Amount")
     private BigDecimal amount;
 
+    @NotBlank(message = "Payment method is required")
+    @Size(max = 20, message = "Payment method cannot exceed 20 characters")
     @Column(name = "PaymentMethod")
     private String paymentMethod;
 
+    @NotBlank(message = "Payment status is required")
+    @Size(max = 20, message = "Payment status cannot exceed 20 characters")
     @Column(name = "PaymentStatus")
     private String paymentStatus;
 

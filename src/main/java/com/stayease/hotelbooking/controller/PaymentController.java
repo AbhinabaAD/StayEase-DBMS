@@ -7,6 +7,8 @@ import com.stayease.hotelbooking.service.PaymentService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 
+import jakarta.validation.Valid;
+
 import java.util.List;
 
 @RestController
@@ -48,7 +50,7 @@ public class PaymentController {
     }
 
     @PostMapping
-    public Payment createPayment(@RequestBody Payment payment) {
+    public Payment createPayment(@Valid @RequestBody Payment payment) {
         return paymentService.savePayment(payment);
     }
 

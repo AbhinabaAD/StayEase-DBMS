@@ -5,6 +5,8 @@ import com.stayease.hotelbooking.service.BookingServiceManager;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import jakarta.validation.Valid;
+
 import java.util.List;
 
 @RestController
@@ -40,7 +42,7 @@ public class BookingServiceController {
     }
 
     @PostMapping
-    public BookingService createBookingService(@RequestBody BookingService bookingService) {
+    public BookingService createBookingService(@Valid @RequestBody BookingService bookingService) {
         return bookingServiceManager.saveBookingService(bookingService);
     }
 
